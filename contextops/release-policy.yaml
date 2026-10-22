@@ -1,0 +1,6 @@
+schema_version: 1
+id: default-release-policy
+blocking_risks:
+  - critical
+  - high
+semantic_threshold: 0.75

@@ -1,0 +1,67 @@
+# Local development instructions and planning documents
+/AGENTS.md
+/docs/
+
+# Local credentials and agent settings
+/.aws/
+/.codex/
+/.agents/
+
+# Python environments, caches, and generated artifacts
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.cache/
+.contextops/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+dist/
+build/
+*.egg-info/
+
+# Node dependencies and local evaluation storage
+node_modules/
+.promptfoo/
+
+# Environment secrets (keep a safe example trackable)
+.env
+.env.*
+!.env.example
+
+# Terraform local state, providers, and private variables
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars
+!*.example.tfvars
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+
+
+# Terraform plans, private bindings, local overrides and diagnostics
+*.tfplan
+*.tfplan.*
+*.plan
+*.plan.json
+*.plan.txt
+*.tfvars.json
+!*.example.tfvars.json
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+/terraform/bootstrap/backend.hcl
+/terraform/bootstrap/backend.tf
+# Dependency lockfiles and safe example configuration remain trackable.
+
+# Local process-only AWS profile selection; no credentials
+/terraform/bootstrap/aws-profile.local.ps1

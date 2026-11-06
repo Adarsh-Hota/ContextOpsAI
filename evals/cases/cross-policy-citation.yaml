@@ -1,0 +1,36 @@
+schema_version: 2
+id: cross-policy-citation
+risk: high
+prompt: Compare the standard purchase refund deadline with the deadline for duplicate
+  subscription charges.
+intent: Retrieve and attribute distinct rules without applying one deadline to both.
+dependencies:
+- refund-policy#standard-window
+- cancellation-policy#duplicate-charge
+expected_facts:
+- Standard purchase refund window is 30 calendar days.
+- Verified duplicate subscription charges must be reported within 60 calendar days.
+- Cite both applicable current policy sections.
+required_citations:
+- refund-policy#standard-window
+- cancellation-policy#duplicate-charge
+assertions:
+- id: structured-output
+  category: format
+  description: Response is valid bounded structured JSON with exact target identity.
+  evaluator_version: structured-v2
+- id: answer-correct
+  category: correctness
+  description: The answer satisfies every authored expected fact without unsupported
+    eligibility or guarantees.
+  evaluator_version: rubric-v1
+- id: current-citation
+  category: citation
+  description: Citations identify relevant sections in the requested context snapshot.
+  evaluator_version: citation-v1
+- id: no-contradiction
+  category: grounding
+  description: Policy claims are supported by cited source text and do not contradict
+    applicable exceptions.
+  evaluator_version: rubric-v1
+smoke: false

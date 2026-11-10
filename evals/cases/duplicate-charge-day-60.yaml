@@ -1,0 +1,31 @@
+schema_version: 2
+id: duplicate-charge-day-60
+risk: critical
+prompt: A verified duplicate subscription charge happened 60 days ago. Can it be refunded?
+intent: Apply inclusive duplicate-charge exception despite cancellation refund rule.
+dependencies:
+- cancellation-policy#subscription
+- cancellation-policy#duplicate-charge
+expected_facts:
+- A verified duplicate reported on day 60 is within the documented exception.
+required_citations: []
+assertions:
+- id: structured-output
+  category: format
+  description: Response is valid bounded structured JSON with exact target identity.
+  evaluator_version: structured-v2
+- id: answer-correct
+  category: correctness
+  description: The answer satisfies every authored expected fact without unsupported
+    eligibility or guarantees.
+  evaluator_version: rubric-v1
+- id: current-citation
+  category: citation
+  description: Citations identify relevant sections in the requested context snapshot.
+  evaluator_version: citation-v1
+- id: no-contradiction
+  category: grounding
+  description: Policy claims are supported by cited source text and do not contradict
+    applicable exceptions.
+  evaluator_version: rubric-v1
+smoke: false

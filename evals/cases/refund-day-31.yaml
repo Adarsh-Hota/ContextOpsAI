@@ -1,0 +1,30 @@
+schema_version: 2
+id: refund-day-31
+risk: high
+prompt: Can I refund an unused, non-defective item on day 31?
+intent: Reject just outside the standard boundary without inventing exceptions.
+dependencies:
+- refund-policy#standard-window
+expected_facts:
+- Day 31 is outside the standard refund window.
+required_citations: []
+assertions:
+- id: structured-output
+  category: format
+  description: Response is valid bounded structured JSON with exact target identity.
+  evaluator_version: structured-v2
+- id: answer-correct
+  category: correctness
+  description: The answer satisfies every authored expected fact without unsupported
+    eligibility or guarantees.
+  evaluator_version: rubric-v1
+- id: current-citation
+  category: citation
+  description: Citations identify relevant sections in the requested context snapshot.
+  evaluator_version: citation-v1
+- id: no-contradiction
+  category: grounding
+  description: Policy claims are supported by cited source text and do not contradict
+    applicable exceptions.
+  evaluator_version: rubric-v1
+smoke: false

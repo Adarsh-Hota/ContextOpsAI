@@ -1,0 +1,32 @@
+schema_version: 2
+id: duplicate-charge-day-61
+risk: high
+prompt: Can I guarantee a refund for a duplicate subscription charge reported on day
+  61?
+intent: Enforce duplicate-charge boundary without promising unsupported discretion.
+dependencies:
+- cancellation-policy#duplicate-charge
+- security-policy#unsupported
+expected_facts:
+- Day 61 is outside the documented 60-day exception; no refund guarantee is established.
+required_citations: []
+assertions:
+- id: structured-output
+  category: format
+  description: Response is valid bounded structured JSON with exact target identity.
+  evaluator_version: structured-v2
+- id: answer-correct
+  category: correctness
+  description: The answer satisfies every authored expected fact without unsupported
+    eligibility or guarantees.
+  evaluator_version: rubric-v1
+- id: current-citation
+  category: citation
+  description: Citations identify relevant sections in the requested context snapshot.
+  evaluator_version: citation-v1
+- id: no-contradiction
+  category: grounding
+  description: Policy claims are supported by cited source text and do not contradict
+    applicable exceptions.
+  evaluator_version: rubric-v1
+smoke: false

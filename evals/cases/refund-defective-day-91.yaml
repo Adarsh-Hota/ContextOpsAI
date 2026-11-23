@@ -1,0 +1,31 @@
+schema_version: 2
+id: refund-defective-day-91
+risk: high
+prompt: My item is defective after 91 days. Is a refund guaranteed?
+intent: Avoid extending the documented defective-item exception.
+dependencies:
+- refund-policy#defective-item
+- security-policy#unsupported
+expected_facts:
+- Day 91 is outside the documented 90-day exception; no guaranteed refund is established.
+required_citations: []
+assertions:
+- id: structured-output
+  category: format
+  description: Response is valid bounded structured JSON with exact target identity.
+  evaluator_version: structured-v2
+- id: answer-correct
+  category: correctness
+  description: The answer satisfies every authored expected fact without unsupported
+    eligibility or guarantees.
+  evaluator_version: rubric-v1
+- id: current-citation
+  category: citation
+  description: Citations identify relevant sections in the requested context snapshot.
+  evaluator_version: citation-v1
+- id: no-contradiction
+  category: grounding
+  description: Policy claims are supported by cited source text and do not contradict
+    applicable exceptions.
+  evaluator_version: rubric-v1
+smoke: false

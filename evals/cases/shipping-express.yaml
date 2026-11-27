@@ -1,0 +1,31 @@
+schema_version: 2
+id: shipping-express
+risk: medium
+prompt: If I order express shipping Friday, is Monday delivery guaranteed?
+intent: Do not invent a dispatch date or turn estimates into guarantees.
+dependencies:
+- shipping-policy#delivery
+expected_facts:
+- Express estimate is 1 to 2 business days after dispatch; Monday delivery is not
+  guaranteed.
+required_citations: []
+assertions:
+- id: structured-output
+  category: format
+  description: Response is valid bounded structured JSON with exact target identity.
+  evaluator_version: structured-v2
+- id: answer-correct
+  category: correctness
+  description: The answer satisfies every authored expected fact without unsupported
+    eligibility or guarantees.
+  evaluator_version: rubric-v1
+- id: current-citation
+  category: citation
+  description: Citations identify relevant sections in the requested context snapshot.
+  evaluator_version: citation-v1
+- id: no-contradiction
+  category: grounding
+  description: Policy claims are supported by cited source text and do not contradict
+    applicable exceptions.
+  evaluator_version: rubric-v1
+smoke: false
